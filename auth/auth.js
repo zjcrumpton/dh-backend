@@ -10,7 +10,6 @@ passport.use(
       passwordField: "password",
     },
     async (username, password, done) => {
-      console.log("IN THIS");
       try {
         const user = await User.create({ username, password });
 
@@ -55,7 +54,6 @@ const JWTstrategy = require("passport-jwt").Strategy;
 const ExtractJWT = require("passport-jwt").ExtractJwt;
 
 passport.use(
-  "jwt",
   new JWTstrategy(
     {
       secretOrKey: "TOP_SECRET",

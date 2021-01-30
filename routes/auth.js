@@ -62,9 +62,13 @@ router.post(
   "/signup",
   passport.authenticate("signup", { session: false }),
   (req, res, next) => {
+    const { user } = req;
+    const body = { _id: user._id, username: user.username };
+    const token = jwt.sign({ user: body }, "DEEP_VALUE");
+
     res.json({
       message: "Signup successful",
-      user: req.user,
+      token: token,
     });
   }
 );
@@ -81,8 +85,8 @@ router.post("/login", async (req, res, next) => {
       req.login(user, { session: false }, async (error) => {
         if (error) return next(error);
 
-        const body = { _id: user._id, email: user.username };
-        const token = jwt.sign({ user: body }, "TOP_SECRET");
+        const body = { _id: user._id, username: user.username };
+        const token = jwt.sign({ user: body }, "DEEP_VALUE");
 
         return res.json({ token });
       });
