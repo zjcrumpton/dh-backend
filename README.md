@@ -52,6 +52,12 @@ Request:
 url/posts
 ```
 
+Body:
+
+```
+    category: "stocks" || "crypto"
+```
+
 _Pagination not implemented yet_
 
 **Create a Post POST method**

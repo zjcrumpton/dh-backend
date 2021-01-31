@@ -37,10 +37,6 @@ const PostSchema = new Schema({
   },
 });
 
-PostSchema.virtual("username").get(
-  () => User.findOne({ _id: this.user }).username
-);
-
 const Post = mongoose.model("Post", PostSchema);
 
 module.exports = Post;
